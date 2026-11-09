@@ -18,6 +18,11 @@ app = FastAPI(title="Mahammad Thameez — Portfolio")
 app.mount("/assets", StaticFiles(directory=BASE_DIR / "assets"), name="assets")
 
 
+@app.get("/health")
+def health_check() -> dict[str, str]:
+    return {"status": "ok"}
+
+
 @app.get("/", include_in_schema=False)
 def read_root() -> FileResponse:
     return FileResponse(BASE_DIR / "index.html")
