@@ -28,4 +28,6 @@ The `/resume` route serves `resume.pdf` as a download. Replace that file when
 you update your resume.
 
 The `GET /health` endpoint returns `{"status":"ok"}` for uptime checks. The
-Render Blueprint configures this route as its service health check.
+Render Blueprint configures this route as its service health check. The
+`GET /api/health` endpoint returns the API status, a message, and a UTC
+timestamp.

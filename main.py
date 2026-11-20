@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -21,6 +22,15 @@ app.mount("/assets", StaticFiles(directory=BASE_DIR / "assets"), name="assets")
 @app.get("/health")
 def health_check() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/api/health")
+def api_health_check() -> dict[str, str]:
+    return {
+        "status": "OK",
+        "message": "Your API is running",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
 
 
 @app.get("/", include_in_schema=False)
